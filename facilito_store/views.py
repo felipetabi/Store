@@ -7,16 +7,17 @@ from facilito_store.forms import RegisterForm
 
 from django.contrib.auth.models import User
 
+from products.models import Product
+
+
 def index(request):
+
+    products = Product.objects.all().order_by('-id')
+
     return render(request,'index.html', {
         'message': 'Listado de Productos',
         'title': 'Productos',
-        'products': [
-            {'title': 'Playera', 'price': 5, 'stock': True},
-            {'title': 'Camisa', 'price': 7, 'stock': True},
-            {'title': 'Mochila', 'price': 20, 'stock': False},
-            {'title': 'Laptop', 'price': 500, 'stock': False}
-        ]
+        'products': products,
     })
 
 def login_view(request):
