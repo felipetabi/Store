@@ -56,7 +56,9 @@ ROOT_URLCONF = 'facilito_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates',
+                os.path.join(BASE_DIR, 'products', 'templates', 'products'),
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
