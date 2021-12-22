@@ -22,6 +22,13 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         print(context)
-        
-
         return context
+
+class ProductSearchListView(ListView):
+    template_name = 'products/search.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(title=self.query())
+
+    def query(self):
+        return self.request.GET.get('q')
